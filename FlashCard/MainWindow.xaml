@@ -1,0 +1,26 @@
+﻿<Window x:Class="FlashCard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlashCard"
+        xmlns:Pages="clr-namespace:FlashCard.Pages"
+        mc:Ignorable="d"
+        Title="FlashCard" Height="600" Width="1000">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Start">
+                    <MenuItem Header="_Synonyms" Click="Synonym_Click"/>
+                    <MenuItem Header="_Spelling" Click="Spelling_Click" />
+                </MenuItem>
+                <MenuItem Header="_New word">
+                    <MenuItem Header="_Single" Click="SingleWord_Click"/>
+                    <MenuItem Header="_Groupe" Click="GroupWord_Click"/>
+                    <MenuItem Header="_File" Click="FileWord_Click"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid x:Name="Content" />
+    </Grid>
+</Window>
