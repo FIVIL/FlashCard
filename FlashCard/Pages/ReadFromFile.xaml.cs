@@ -93,23 +93,32 @@ namespace FlashCard.Pages
                 {
                     if (string.IsNullOrWhiteSpace(item)) continue;
                     var p = breakUp(item);
-                    var it = new Item(p.word, p.def, "", "");
+                    var it = new Item(p.word, p.def, p.per, p.pron);
                     items.Add(it);
                     Words.Children.Add(it.Visual());
                 }
             }
         }
-        private (string word, string def) breakUp(string inp)
+        private (string word, string def, string per, string pron) breakUp(string inp)
         {
             var res = inp.Split('>');
-            res[0] = res[0].Replace('-', ' ');
-            res[0] = res[0].Trim();
-            if (res.Length > 1)
+            for (int i = 0; i < res.Length; i++)
             {
-                res[1] = res[1].Trim();
-                return (res[0], res[1]);
+                res[i] = res[i].Replace('-', ' ').Trim();
             }
-            return (res[0], "");
+            switch (res.Length)
+            {
+                case 1:
+                    return (res[0], "", "", "");
+                case 2:
+                    return (res[0], res[1], "", "");
+                case 3:
+                    return (res[0], res[1], res[2], "");
+                case 4:
+                    return (res[0], res[1], res[2], res[3]);
+                default:
+                    return ("", "", "", "");
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
