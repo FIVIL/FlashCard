@@ -49,14 +49,16 @@ namespace FlashCard.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Current.Meaning++;
+            if (mod == 0) Current.Meaning++;
+            else if (mod == 1) Current.Spelling++;
             dic.Update(Current);
             next();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Current.Meaning--;
+            if (mod == 0) Current.Meaning--;
+            else if (mod == 1) Current.Spelling--;
             dic.Update(Current);
             next();
         }
@@ -71,7 +73,8 @@ namespace FlashCard.Pages
             if (index + 1 < Words.Count)
             {
                 index++;
-                word.Text = Current.TheWord;
+                if (mod == 0) word.Text = Current.TheWord;
+                else if (mod == 1) word.Text = string.Empty;
                 Definition.Text = string.Empty;
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;

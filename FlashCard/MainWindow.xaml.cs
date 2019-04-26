@@ -31,12 +31,12 @@ namespace FlashCard
 
         private void Synonym_Click(object sender, RoutedEventArgs e)
         {
-            Helpers.Navigate(new Synonym());
+            Helpers.Navigate(new Synonym(0));
         }
 
         private void Spelling_Click(object sender, RoutedEventArgs e)
         {
-
+            Helpers.Navigate(new Synonym(1));
         }
 
         private void SingleWord_Click(object sender, RoutedEventArgs e)
