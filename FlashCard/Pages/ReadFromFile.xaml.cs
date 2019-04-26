@@ -1,4 +1,5 @@
 ﻿using FlashCard.Model;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,14 +85,18 @@ namespace FlashCard.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Words.Children.Clear();
-            var lines = System.IO.File.ReadAllLines("Input.txt");
-            foreach (var item in lines)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
             {
-                if (string.IsNullOrWhiteSpace(item)) continue;
-                var p = breakUp(item);
-                var it = new Item(p.word, p.def, "", "");
-                items.Add(it);
-                Words.Children.Add(it.Visual());
+                var lines = System.IO.File.ReadAllLines(openFileDialog.FileName);
+                foreach (var item in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(item)) continue;
+                    var p = breakUp(item);
+                    var it = new Item(p.word, p.def, "", "");
+                    items.Add(it);
+                    Words.Children.Add(it.Visual());
+                }
             }
         }
         private (string word, string def) breakUp(string inp)
@@ -119,20 +124,34 @@ namespace FlashCard.Pages
         {
             using (var db = new Dictionary())
             {
+                var words = db.GetAll().ToList();
                 foreach (var item in items)
                 {
-                    var w = new Word()
+                    if (string.IsNullOrWhiteSpace(item.Get.word)) continue;
+                    var p = words.FirstOrDefault(x => x.TheWord.Contains(item.Get.word));
+                    if (p is null) p = words.FirstOrDefault(x => item.Get.word.Contains(x.TheWord));
+                    if (p is null)
                     {
-                        TheWord = item.Get.word,
-                        Definitions = item.Get.def,
-                        Persian = item.Get.per,
-                        Pron = item.Get.pron,
-                        Meaning = 0,
-                        Spelling = 0
-                    };
-                    db.Insert(w);
+                        var w = new Word()
+                        {
+                            TheWord = item.Get.word,
+                            Definitions = item.Get.def,
+                            Persian = item.Get.per,
+                            Pron = item.Get.pron,
+                            Meaning = 0,
+                            Spelling = 0
+                        };
+                        db.Insert(w);
+                    }
+                    else
+                    {
+                        p.Meaning += 5;
+                        db.Update(p);
+                    }
                 }
             }
+            items.Clear();
+            Words.Children.Clear();
         }
     }
 }
