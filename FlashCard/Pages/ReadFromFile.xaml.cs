@@ -298,7 +298,7 @@ namespace FlashCard.Pages
                     }
                     else
                     {
-                        p.Meaning += 5;
+                        p.Meaning -= 5;
                         db.Update(p);
                     }
                 }
