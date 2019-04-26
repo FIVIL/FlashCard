@@ -51,6 +51,7 @@ namespace FlashCard.Pages
         {
             if (mod == 0) Current.Meaning++;
             else if (mod == 1) Current.Spelling++;
+            else if (mod == 2) Current.Meaning++;
             dic.Update(Current);
             next();
         }
@@ -59,6 +60,7 @@ namespace FlashCard.Pages
         {
             if (mod == 0) Current.Meaning--;
             else if (mod == 1) Current.Spelling--;
+            else if (mod == 2) Current.Meaning--;
             dic.Update(Current);
             next();
         }
@@ -73,8 +75,22 @@ namespace FlashCard.Pages
             if (index + 1 < Words.Count)
             {
                 index++;
-                if (mod == 0) word.Text = Current.TheWord;
-                else if (mod == 1) word.Text = string.Empty;
+                if (mod == 0)
+                {
+                    word.Text = Current.TheWord;
+                    Definition.Text = string.Empty;
+                }
+                else if (mod == 1)
+                {
+                    word.Text = string.Empty;
+                    syn.SpeakAsync(Current.TheWord);
+                    Definition.Text = string.Empty;
+                }
+                else if (mod == 1)
+                {
+                    word.Text = string.Empty;
+                    Definition.Text = Current.Definitions;
+                }
                 Definition.Text = string.Empty;
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;
@@ -90,6 +106,7 @@ namespace FlashCard.Pages
             Definition.Text = Current.Definitions;
             Persian.Text = Current.Persian;
             Pron.Text = Current.Pron;
+            word.Text = Current.TheWord;
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -116,12 +133,14 @@ namespace FlashCard.Pages
             index = -1;
             if (mod == 0) Words = dic.GetWord(x => x.IsMeaning).ToList();
             else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling).ToList();
+            else if (mod == 2) Words = dic.GetWord(x => x.IsMeaning).ToList();
         }
         private void LoadBasic(int diff)
         {
             index = -1;
             if (mod == 0) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
             else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling && x.Spelling < diff).ToList();
+            else if (mod == 0) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
         }
         private void Load()
         {
