@@ -112,7 +112,11 @@ namespace FlashCard.Pages
                 var lines = System.IO.File.ReadAllLines(openFileDialog.FileName);
                 foreach (var item in lines)
                 {
-                    if (item.Contains("**")) continue;
+                    if (item.Contains("**"))
+                    {
+                        sb.AppendLine(item);
+                        continue;
+                    }
                     if (string.IsNullOrWhiteSpace(item)) continue;
                     var p = breakUp(item);
                     var it = new Item(p.word, p.def, p.per, p.pron);
