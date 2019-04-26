@@ -56,6 +56,7 @@ namespace FlashCard.Pages
                 Spelling.Margin = new Thickness(0, 0, 3, 0);
                 Meaning = new CheckBox();
                 Meaning.Margin = new Thickness(0, 0, 3, 0);
+                Meaning.IsChecked = true;
 
             }
             private readonly TextBox word;
