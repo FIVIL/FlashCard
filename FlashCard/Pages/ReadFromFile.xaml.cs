@@ -247,7 +247,8 @@ namespace FlashCard.Pages
                     .ThenBy(x => x.IsSpelling)
                     .ThenBy(x => x.Meaning)
                     .ThenBy(x => x.PronScore)
-                    .ThenBy(x => x.Spelling).ToList();
+                    .ThenBy(x => x.Spelling)
+                    .ThenBy(x => x.TheWord).ToList();
                 foreach (var item in words)
                 {
                     var it = new Item(item);
