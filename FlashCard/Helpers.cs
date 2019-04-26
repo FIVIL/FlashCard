@@ -10,6 +10,7 @@ namespace FlashCard
     public static class Helpers
     {
         public static Grid mainGrid { get; set; }
+        public static MainWindow mainWindow { get; set; }
         public static void Navigate(UserControl userControl)
         {
             mainGrid.Children.Clear();

@@ -25,6 +25,7 @@ namespace FlashCard
         {
             InitializeComponent();
             Helpers.mainGrid = this.Content;
+            Helpers.mainWindow = this;
             Helpers.Navigate(new MainPage());
         }
 
@@ -50,7 +51,7 @@ namespace FlashCard
 
         private void FileWord_Click(object sender, RoutedEventArgs e)
         {
-
+            Helpers.Navigate(new ReadFromFile());
         }
     }
 }

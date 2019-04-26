@@ -17,7 +17,6 @@
                 </MenuItem>
                 <MenuItem Header="_New word">
                     <MenuItem Header="_Single" Click="SingleWord_Click"/>
-                    <MenuItem Header="_Groupe" Click="GroupWord_Click"/>
                     <MenuItem Header="_File" Click="FileWord_Click"/>
                 </MenuItem>
             </Menu>

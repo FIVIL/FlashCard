@@ -39,6 +39,7 @@ namespace FlashCard.Pages
             syn.Volume = 100;
             syn.Rate = -2;
             next();
+            Helpers.mainWindow.Height = 350;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -33,7 +33,7 @@ namespace FlashCard.Model
             => words.Find(expression);
         public IEnumerable<Word> GetAll() => words.FindAll();
         public void Insert(Word w) => words.Insert(w);
-        public void Inser(IEnumerable<Word> w) => words.Insert(w);
+        public void Insert(IEnumerable<Word> w) => words.Insert(w);
         public void Update(Word w) => words.Update(w);
         public void Dispose()
         {
