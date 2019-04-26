@@ -13,6 +13,7 @@
     </UserControl.Resources>
     <Grid Margin="20 0">
         <StackPanel>
+            <TextBox x:Name="Cat" Margin="5" Text="0"/>
             <ScrollViewer x:Name="SV" VerticalAlignment="Top" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Height="850">
                 <StackPanel x:Name="Words">
                     <StackPanel Margin="0 2" Background="Wheat">

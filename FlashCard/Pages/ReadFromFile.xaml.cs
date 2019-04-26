@@ -312,7 +312,7 @@ namespace FlashCard.Pages
                             Definitions = item.Get.def,
                             Persian = item.Get.per,
                             Pron = item.Get.pron,
-                            Meaning = 0,
+                            Meaning = -int.Parse(Cat.Text),
                             Spelling = 0,
                             PronScore = 0,
                             IsMeaning = item.Get.mean,
