@@ -109,21 +109,21 @@ namespace FlashCard.Pages
         private void Load()
         {
             index = -1;
-            Words = dic.GetAll().ToList();
+            Words = dic.GetWord(x => x.IsMeaning).ToList();
             Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void Load(int max)
         {
             index = -1;
-            Words = dic.GetAll().ToList();
+            Words = dic.GetWord(x => x.IsMeaning).ToList();
             Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
             next();
         }
         private void Load(int max, int diff)
         {
             index = -1;
-            Words = dic.GetWord(x => x.Meaning < diff).ToList();
+            Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
             if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
             next();
