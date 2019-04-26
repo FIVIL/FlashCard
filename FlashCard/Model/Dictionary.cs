@@ -35,6 +35,7 @@ namespace FlashCard.Model
         public void Insert(Word w) => words.Insert(w);
         public void Insert(IEnumerable<Word> w) => words.Insert(w);
         public void Update(Word w) => words.Update(w);
+        public void Remove(Guid id) => words.Delete(x => x.Id == id);
         public void Dispose()
         {
             db.Dispose();

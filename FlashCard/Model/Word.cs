@@ -12,6 +12,10 @@ namespace FlashCard.Model
         {
             Id = Guid.NewGuid();
         }
+        public Word(Guid id)
+        {
+            Id = id;
+        }
         public Guid Id { get; set; }
         public string TheWord { get; set; }
         public string Definitions { get; set; }
