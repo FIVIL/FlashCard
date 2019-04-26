@@ -219,7 +219,11 @@ namespace FlashCard.Pages
             items.Clear();
             using (var db = new Dictionary())
             {
-                var words = db.GetAll().ToList();
+                var words = db.GetAll()
+                    .OrderBy(x => x.IsMeaning)
+                    .ThenBy(x => x.IsSpelling)
+                    .ThenBy(x => x.Meaning)
+                    .ThenBy(x => x.Spelling).ToList();
                 foreach (var item in words)
                 {
                     var it = new Item(item);
