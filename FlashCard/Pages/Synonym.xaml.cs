@@ -86,12 +86,11 @@ namespace FlashCard.Pages
                     syn.SpeakAsync(Current.TheWord);
                     Definition.Text = string.Empty;
                 }
-                else if (mod == 1)
+                else if (mod == 2)
                 {
                     word.Text = string.Empty;
                     Definition.Text = Current.Definitions;
                 }
-                Definition.Text = string.Empty;
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;
                 MeaningScore.Text = Current.Meaning.ToString();
@@ -140,7 +139,7 @@ namespace FlashCard.Pages
             index = -1;
             if (mod == 0) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
             else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling && x.Spelling < diff).ToList();
-            else if (mod == 0) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
+            else if (mod == 2) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
         }
         private void Load()
         {
