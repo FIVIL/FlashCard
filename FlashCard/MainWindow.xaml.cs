@@ -74,5 +74,10 @@ namespace FlashCard
         {
             Helpers.Navigate(new ReadFromFile(1));
         }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            Helpers.Navigate(new Synonym(3));
+        }
     }
 }
