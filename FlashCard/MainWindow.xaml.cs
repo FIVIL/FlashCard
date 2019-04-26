@@ -57,7 +57,7 @@ namespace FlashCard
 
         private void FileWord_Click(object sender, RoutedEventArgs e)
         {
-            Helpers.Navigate(new ReadFromFile());
+            Helpers.Navigate(new ReadFromFile(0));
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -68,6 +68,11 @@ namespace FlashCard
 
                 Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(p, Newtonsoft.Json.Formatting.Indented));
             }
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Helpers.Navigate(new ReadFromFile(1));
         }
     }
 }

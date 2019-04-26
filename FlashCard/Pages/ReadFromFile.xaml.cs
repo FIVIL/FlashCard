@@ -222,7 +222,9 @@ namespace FlashCard.Pages
                 var words = db.GetAll().ToList();
                 foreach (var item in words)
                 {
-                    items.Add(new Item(item));
+                    var it = new Item(item);
+                    items.Add(it);
+                    Words.Children.Add(it.UpdateVisual());
                 }
             }
         }

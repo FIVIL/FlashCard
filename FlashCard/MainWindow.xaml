@@ -19,6 +19,7 @@
                 <MenuItem Header="_New word">
                     <MenuItem Header="_Single" Click="SingleWord_Click"/>
                     <MenuItem Header="_File" Click="FileWord_Click"/>
+                    <MenuItem Header="_Update" Click="MenuItem_Click_1"/>
                     <MenuItem Header="_Show" Click="MenuItem_Click" />
                 </MenuItem>
             </Menu>
