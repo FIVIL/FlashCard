@@ -52,11 +52,18 @@ namespace FlashCard.Pages
                 this.pron = new TextBox();
                 this.pron.Margin = new Thickness(1);
                 this.pron.Text = pron;
+                Spelling = new CheckBox();
+                Spelling.Margin = new Thickness(0, 0, 3, 0);
+                Meaning = new CheckBox();
+                Meaning.Margin = new Thickness(0, 0, 3, 0);
+
             }
             private readonly TextBox word;
             private readonly TextBox def;
             private readonly TextBox per;
             private readonly TextBox pron;
+            private readonly CheckBox Meaning;
+            private readonly CheckBox Spelling;
             public Border Visual()
             {
                 var b = new Border();
@@ -75,28 +82,44 @@ namespace FlashCard.Pages
                 sp.Children.Add(this.per);
                 sp.Children.Add(new TextBlock() { Text = "Pron:", FontSize = 10 });
                 sp.Children.Add(this.pron);
+                var spp = new StackPanel();
+                spp.Margin = new Thickness(1);
+                spp.Orientation = Orientation.Horizontal;
+                spp.Children.Add(new TextBlock() { Text = "Meaning:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
+                spp.Children.Add(Meaning);
+                spp.Children.Add(new TextBlock() { Text = "Spelling:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
+                spp.Children.Add(Spelling);
+                sp.Children.Add(spp);
                 b.Child = sp;
                 return b;
             }
-            public (string word, string def, string per, string pron) Get
-                => (this.word.Text, this.def.Text, this.pron.Text, this.pron.Text);
+            public (string word, string def, string per, string pron, bool mean, bool sp) Get
+                => (this.word.Text, this.def.Text, this.pron.Text, this.pron.Text, (bool)Meaning.IsChecked, (bool)Spelling.IsChecked);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            read();
+        }
+        private void read()
         {
             Words.Children.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
+                var sb = new StringBuilder();
                 var lines = System.IO.File.ReadAllLines(openFileDialog.FileName);
                 foreach (var item in lines)
                 {
+                    if (item.Contains("**")) continue;
                     if (string.IsNullOrWhiteSpace(item)) continue;
                     var p = breakUp(item);
                     var it = new Item(p.word, p.def, p.per, p.pron);
                     items.Add(it);
                     Words.Children.Add(it.Visual());
+                    sb.AppendLine($"{item} **");
                 }
+                System.IO.File.WriteAllText(openFileDialog.FileName, sb.ToString());
             }
         }
         private (string word, string def, string per, string pron) breakUp(string inp)
@@ -148,7 +171,9 @@ namespace FlashCard.Pages
                             Persian = item.Get.per,
                             Pron = item.Get.pron,
                             Meaning = 0,
-                            Spelling = 0
+                            Spelling = 0,
+                            IsMeaning = item.Get.mean,
+                            IsSpelling = item.Get.sp
                         };
                         db.Insert(w);
                     }
