@@ -72,6 +72,7 @@ namespace FlashCard.Pages
                 Pron.Text = string.Empty;
                 MeaningScore.Text = Current.Meaning.ToString();
                 SpellScore.Text = Current.Spelling.ToString();
+                Counter.Text = $"{index} from {Words.Count}";
             }
             else MessageBox.Show("ended");
         }

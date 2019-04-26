@@ -44,5 +44,6 @@
                 <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
             </StackPanel>
         </Border>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" x:Name="Counter" Margin="5"/>
     </Grid>
 </UserControl>
