@@ -33,6 +33,8 @@ namespace FlashCard.Pages
             index = -1;
             dic = new Dictionary();
             Words = dic.GetAll().ToList();
+            var rnd = new Random();
+            Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             syn = new SpeechSynthesizer();
             syn.Volume = 100;
             syn.Rate = -2;
