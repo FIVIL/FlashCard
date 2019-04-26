@@ -16,6 +16,18 @@ namespace FlashCard.Model
             db = new LiteDatabase(@"MyData.db");
             words = db.GetCollection<Word>("Word");
             words.EnsureIndex(x => x.TheWord);
+            if (words.Count() == 0)
+            {
+                words.Insert(new Word()
+                {
+                    TheWord = "Test",
+                    Definitions = "To Test",
+                    Meaning = 0,
+                    Persian = "تست",
+                    Pron = "تست",
+                    Spelling = 0
+                });
+            }
         }
         public IEnumerable<Word> GetWord(System.Linq.Expressions.Expression<Func<Word, bool>> expression)
             => words.Find(expression);

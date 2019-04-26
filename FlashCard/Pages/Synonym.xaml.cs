@@ -30,12 +30,13 @@ namespace FlashCard.Pages
         public Synonym()
         {
             InitializeComponent();
-            index = 0;
+            index = -1;
             dic = new Dictionary();
             Words = dic.GetAll().ToList();
             syn = new SpeechSynthesizer();
             syn.Volume = 100;
             syn.Rate = -2;
+            next();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
