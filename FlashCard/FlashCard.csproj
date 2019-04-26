@@ -75,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers.cs" />
+    <Compile Include="Logic\WordLoader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -84,6 +85,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ReadFromFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Spelling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,6 +105,9 @@
     </Compile>
     <Compile Include="Pages\ReadFromFile.xaml.cs">
       <DependentUpon>ReadFromFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Spelling.xaml.cs">
+      <DependentUpon>Spelling.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Synonym.xaml.cs">
       <DependentUpon>Synonym.xaml</DependentUpon>

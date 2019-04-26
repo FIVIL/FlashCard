@@ -28,9 +28,11 @@ namespace FlashCard.Pages
         private Dictionary dic;
         private SpeechSynthesizer syn;
         private Random rnd;
-        public Synonym()
+        private int mod;
+        public Synonym(int mod)
         {
             InitializeComponent();
+            this.mod = mod;
             Helpers.mainWindow.Height = 350;
             syn = new SpeechSynthesizer();
             dic = new Dictionary();
@@ -106,24 +108,34 @@ namespace FlashCard.Pages
             }
 
         }
-        private void Load()
+        private void LoadBasic()
         {
             index = -1;
-            Words = dic.GetWord(x => x.IsMeaning).ToList();
+            if (mod == 0) Words = dic.GetWord(x => x.IsMeaning).ToList();
+            else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling).ToList();
+        }
+        private void LoadBasic(int diff)
+        {
+            index = -1;
+            if (mod == 0) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
+            else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling && x.Spelling < diff).ToList();
+        }
+        private void Load()
+        {
+
+            LoadBasic();
             Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void Load(int max)
         {
-            index = -1;
-            Words = dic.GetWord(x => x.IsMeaning).ToList();
+            LoadBasic();
             Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
             next();
         }
         private void Load(int max, int diff)
         {
-            index = -1;
-            Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
+            LoadBasic(diff);
             if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
             next();
