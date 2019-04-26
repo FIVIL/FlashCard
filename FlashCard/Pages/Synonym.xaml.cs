@@ -37,7 +37,7 @@ namespace FlashCard.Pages
             rnd = new Random();
             syn.Volume = 100;
             syn.Rate = -2;
-            Load()
+            Load();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
