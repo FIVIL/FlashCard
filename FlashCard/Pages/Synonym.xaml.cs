@@ -45,6 +45,10 @@ namespace FlashCard.Pages
                 dic.Dispose();
                 syn.Dispose();
             };
+            if (mod == 0) Mode.Text = "Synonym";
+            else if (mod == 2) Mode.Text = "Reverse Synonym";
+            else if (mod == 1) Mode.Text = "Spelling";
+            else if (mod == 3) Mode.Text = "Pronunciation";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

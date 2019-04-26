@@ -53,5 +53,6 @@
                 <Button Background="Aqua" Margin="1" Click="Button_Click_4">New</Button>
             </StackPanel>
         </Border>
+        <TextBlock x:Name="Mode" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>
