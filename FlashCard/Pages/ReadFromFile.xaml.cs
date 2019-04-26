@@ -243,8 +243,10 @@ namespace FlashCard.Pages
             {
                 var words = db.GetAll()
                     .OrderBy(x => x.IsMeaning)
+                    .ThenBy(x => x.IsPron)
                     .ThenBy(x => x.IsSpelling)
                     .ThenBy(x => x.Meaning)
+                    .ThenBy(x => x.PronScore)
                     .ThenBy(x => x.Spelling).ToList();
                 foreach (var item in words)
                 {
