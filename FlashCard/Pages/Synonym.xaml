@@ -28,7 +28,7 @@
         </Border>
         <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
                 Padding="5"
-            VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Margin="10">
+            VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Margin="10">
             <StackPanel>
                 <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
                 <TextBlock x:Name="MeaningScore"/>
@@ -37,7 +37,7 @@
         </Border>
         <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
                 Padding="5"
-            VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Margin="10">
+            VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Margin="10">
             <StackPanel>
                 <Button Background="Aqua" Margin="1" Click="Button_Click_2">Hear</Button>
                 <Button Background="Green" Margin="1" Click="Button_Click">OK</Button>
@@ -46,10 +46,10 @@
         </Border>
         <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
                 Padding="5"
-            VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Margin="10">
+            VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Margin="10">
             <StackPanel>
                 <TextBlock x:Name="Counter"/>
-                <TextBlock x:Name="CountImportance"/>
+                <TextBox x:Name="CountImportance" Margin="1" FontSize="15"/>
                 <Button Background="Aqua" Margin="1" Click="Button_Click_4">New</Button>
             </StackPanel>
         </Border>

@@ -38,6 +38,11 @@ namespace FlashCard.Pages
             syn.Volume = 100;
             syn.Rate = -2;
             Load();
+            Unloaded += (e, s) =>
+            {
+                dic.Dispose();
+                syn.Dispose();
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
