@@ -15,21 +15,34 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
-            <TextBlock x:Name="word" Text="Word"/>
-            <TextBlock x:Name="Definition" TextWrapping="Wrap" Text="TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTe"/>
-            <TextBlock x:Name="Persian"/>
-            <TextBlock x:Name="Pron"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Margin="10px">
-            <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
-            <TextBlock x:Name="MeaningScore"/>
-            <TextBlock x:Name="SpellScore"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Margin="10px">
-            <Button Background="Aqua" Margin="1" Click="Button_Click_2">Hear</Button>
-            <Button Background="Green" Margin="1" Click="Button_Click">OK</Button>
-            <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
-        </StackPanel>
+        <Border Background="White" 
+                VerticalAlignment="Top" HorizontalAlignment="Stretch" 
+                CornerRadius="5" Margin="5" Padding="5"
+                BorderBrush="Black" BorderThickness="2">
+            <StackPanel HorizontalAlignment="Stretch">
+                <TextBlock x:Name="word" Text="Word"/>
+                <TextBlock x:Name="Definition" TextWrapping="Wrap" Text="TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTe"/>
+                <TextBlock x:Name="Persian"/>
+                <TextBlock x:Name="Pron"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
+                Padding="5"
+            VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Margin="10">
+            <StackPanel>
+                <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
+                <TextBlock x:Name="MeaningScore"/>
+                <TextBlock x:Name="SpellScore"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
+                Padding="5"
+            VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Margin="10">
+            <StackPanel>
+                <Button Background="Aqua" Margin="1" Click="Button_Click_2">Hear</Button>
+                <Button Background="Green" Margin="1" Click="Button_Click">OK</Button>
+                <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
