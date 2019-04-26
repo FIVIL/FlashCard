@@ -168,6 +168,7 @@ namespace FlashCard.Pages
                 bt.Click += (e, s) =>
                  {
                      del = true;
+                     b.Background = Brushes.Red;
                  };
                 spp.Children.Add(bt);
                 sp.Children.Add(spp);
@@ -265,8 +266,9 @@ namespace FlashCard.Pages
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            index = 0;
             if (mod == 0) Insert();
-            if (mod == 1) Update();
+            else if (mod == 1) Update();
         }
         private void Insert()
         {
