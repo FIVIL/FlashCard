@@ -1,4 +1,5 @@
-﻿using FlashCard.Pages;
+﻿using FlashCard.Model;
+using FlashCard.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,11 @@ namespace FlashCard
             Helpers.Navigate(new Synonym(0));
         }
 
+        private void SynonymReverse_Click(object sender, RoutedEventArgs e)
+        {
+            Helpers.Navigate(new Synonym(2));
+        }
+
         private void Spelling_Click(object sender, RoutedEventArgs e)
         {
             Helpers.Navigate(new Synonym(1));
@@ -52,6 +58,16 @@ namespace FlashCard
         private void FileWord_Click(object sender, RoutedEventArgs e)
         {
             Helpers.Navigate(new ReadFromFile());
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dic = new Dictionary())
+            {
+                var p = dic.GetAll().ToArray();
+
+                Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(p, Newtonsoft.Json.Formatting.Indented));
+            }
         }
     }
 }
