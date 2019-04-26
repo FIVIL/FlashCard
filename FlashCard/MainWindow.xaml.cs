@@ -30,7 +30,7 @@ namespace FlashCard
 
         private void Synonym_Click(object sender, RoutedEventArgs e)
         {
-
+            Helpers.Navigate(new Synonym());
         }
 
         private void Spelling_Click(object sender, RoutedEventArgs e)

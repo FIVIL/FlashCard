@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="FlashCard.Pages.Synonym"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlashCard.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Background" Value="Wheat"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
+            <TextBlock x:Name="word" Text="Word"/>
+            <TextBlock x:Name="Definition" TextWrapping="Wrap" Text="TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTe"/>
+            <TextBlock x:Name="Persian"/>
+            <TextBlock x:Name="Pron"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Margin="10px">
+            <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
+            <TextBlock x:Name="MeaningScore"/>
+            <TextBlock x:Name="SpellScore"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Margin="10px">
+            <Button Background="Aqua" Margin="1" Click="Button_Click_2">Hear</Button>
+            <Button Background="Green" Margin="1" Click="Button_Click">OK</Button>
+            <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

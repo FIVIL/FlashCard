@@ -18,7 +18,6 @@ namespace FlashCard.Model
         public string Persian { get; set; }
         public string Pron { get; set; }
         public int Meaning { get; set; }
-        public int PronProblem { get; set; }
         public int Spelling { get; set; }
     }
 }
