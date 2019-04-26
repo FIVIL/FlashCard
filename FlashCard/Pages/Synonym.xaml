@@ -44,6 +44,14 @@
                 <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
             </StackPanel>
         </Border>
-        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" x:Name="Counter" Margin="5"/>
+        <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
+                Padding="5"
+            VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Margin="10">
+            <StackPanel>
+                <TextBlock x:Name="Counter"/>
+                <TextBlock x:Name="CountImportance"/>
+                <Button Background="Aqua" Margin="1" Click="Button_Click_4">New</Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
