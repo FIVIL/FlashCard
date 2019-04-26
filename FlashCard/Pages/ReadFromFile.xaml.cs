@@ -59,6 +59,8 @@ namespace FlashCard.Pages
                 Meaning = new CheckBox();
                 Meaning.Margin = new Thickness(0, 0, 3, 0);
                 Meaning.IsChecked = true;
+                IsPron = new CheckBox();
+                IsPron.Margin = new Thickness(0, 0, 3, 0);
             }
             public Item(Word w)
             {
@@ -84,24 +86,36 @@ namespace FlashCard.Pages
                 Meaning = new CheckBox();
                 Meaning.Margin = new Thickness(0, 0, 3, 0);
                 Meaning.IsChecked = w.IsMeaning;
+                IsPron = new CheckBox();
+                IsPron.Margin = new Thickness(0, 0, 3, 0);
+                IsPron.IsChecked = w.IsPron;
 
                 this.defScore = new TextBox();
                 this.defScore.Margin = new Thickness(0, 0, 3, 0);
                 this.defScore.Text = w.Meaning.ToString();
+                this.defScore.Width = 30;
                 this.spelScore = new TextBox();
                 this.spelScore.Margin = new Thickness(0, 0, 3, 0);
                 this.spelScore.Text = w.Spelling.ToString();
+                this.spelScore.Width = 30;
+                this.PronScore = new TextBox();
+                this.PronScore.Margin = new Thickness(0, 0, 3, 0);
+                this.PronScore.Text = w.PronScore.ToString();
+                this.PronScore.Width = 30;
             }
             private readonly TextBox defScore;
             private readonly TextBox spelScore;
+            private readonly TextBox PronScore;
             private readonly TextBox word;
             private readonly TextBox def;
             private readonly TextBox per;
             private readonly TextBox pron;
             private readonly CheckBox Meaning;
             private readonly CheckBox Spelling;
+            private readonly CheckBox IsPron;
             private Guid id;
             private bool del = false;
+
             public Border Visual()
             {
                 var b = new Border();
@@ -125,6 +139,8 @@ namespace FlashCard.Pages
                 spp.Orientation = Orientation.Horizontal;
                 spp.Children.Add(new TextBlock() { Text = "Meaning:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
                 spp.Children.Add(Meaning);
+                spp.Children.Add(new TextBlock() { Text = "Pron:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
+                spp.Children.Add(IsPron);
                 spp.Children.Add(new TextBlock() { Text = "Spelling:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
                 spp.Children.Add(Spelling);
                 sp.Children.Add(spp);
@@ -154,6 +170,8 @@ namespace FlashCard.Pages
                 sppp.Orientation = Orientation.Horizontal;
                 sppp.Children.Add(new TextBlock() { Text = $"Meaning: ", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
                 sppp.Children.Add(this.defScore);
+                sppp.Children.Add(new TextBlock() { Text = $"Pron: ", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
+                sppp.Children.Add(this.PronScore);
                 sppp.Children.Add(new TextBlock() { Text = $"Spelling: ", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
                 sppp.Children.Add(this.spelScore);
                 sp.Children.Add(sppp);
@@ -162,6 +180,8 @@ namespace FlashCard.Pages
                 spp.Orientation = Orientation.Horizontal;
                 spp.Children.Add(new TextBlock() { Text = "Meaning:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
                 spp.Children.Add(Meaning);
+                spp.Children.Add(new TextBlock() { Text = "Pron:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
+                spp.Children.Add(IsPron);
                 spp.Children.Add(new TextBlock() { Text = "Spelling:", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
                 spp.Children.Add(Spelling);
                 var bt = new Button() { Content = "delete" };
@@ -175,12 +195,13 @@ namespace FlashCard.Pages
                 b.Child = sp;
                 return b;
             }
-            public (string word, string def, string per, string pron, bool mean, bool sp) Get
-                => (this.word.Text, this.def.Text, this.pron.Text, this.pron.Text, (bool)Meaning.IsChecked, (bool)Spelling.IsChecked);
-            public (string word, string def, string per, string pron, bool mean, bool sp, int defscore, int spescore, bool del, Guid id) Update
+            public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron) Get
+                => (this.word.Text, this.def.Text, this.pron.Text, this.pron.Text,
+                (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked);
+            public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron, int defscore, int spescore, int pronscore, bool del, Guid id) Update
                => (this.word.Text, this.def.Text, this.pron.Text, this.pron.Text,
-                (bool)Meaning.IsChecked, (bool)Spelling.IsChecked,
-                int.Parse(defScore.Text), int.Parse(spelScore.Text), del, id);
+                (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked,
+                int.Parse(defScore.Text), int.Parse(spelScore.Text), int.Parse(PronScore.Text), del, id);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -290,8 +311,10 @@ namespace FlashCard.Pages
                             Pron = item.Get.pron,
                             Meaning = 0,
                             Spelling = 0,
+                            PronScore = 0,
                             IsMeaning = item.Get.mean,
-                            IsSpelling = item.Get.sp
+                            IsSpelling = item.Get.sp,
+                            IsPron = item.Get.ispron
                         };
                         Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(w));
                         db.Insert(w);
@@ -324,7 +347,9 @@ namespace FlashCard.Pages
                             IsMeaning = item.Update.mean,
                             IsSpelling = item.Update.sp,
                             Meaning = item.Update.defscore,
-                            Spelling = item.Update.spescore
+                            Spelling = item.Update.spescore,
+                            IsPron = item.Update.ispron,
+                            PronScore = item.Update.pronscore
                         });
                     }
                 }
