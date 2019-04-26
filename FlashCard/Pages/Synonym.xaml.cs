@@ -52,6 +52,7 @@ namespace FlashCard.Pages
             if (mod == 0) Current.Meaning++;
             else if (mod == 1) Current.Spelling++;
             else if (mod == 2) Current.Meaning++;
+            else if (mod == 3) Current.PronScore++;
             dic.Update(Current);
             next();
         }
@@ -61,6 +62,7 @@ namespace FlashCard.Pages
             if (mod == 0) Current.Meaning--;
             else if (mod == 1) Current.Spelling--;
             else if (mod == 2) Current.Meaning--;
+            else if (mod == 3) Current.PronScore--;
             dic.Update(Current);
             next();
         }
@@ -90,6 +92,11 @@ namespace FlashCard.Pages
                 {
                     word.Text = string.Empty;
                     Definition.Text = Current.Definitions;
+                }
+                else if (mod == 3)
+                {
+                    word.Text = Current.TheWord;
+                    Definition.Text = string.Empty;
                 }
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;
@@ -133,6 +140,7 @@ namespace FlashCard.Pages
             if (mod == 0) Words = dic.GetWord(x => x.IsMeaning).ToList();
             else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling).ToList();
             else if (mod == 2) Words = dic.GetWord(x => x.IsMeaning).ToList();
+            else if (mod == 3) Words = dic.GetWord(x => x.IsPron).ToList();
         }
         private void LoadBasic(int diff)
         {
@@ -140,6 +148,7 @@ namespace FlashCard.Pages
             if (mod == 0) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
             else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling && x.Spelling < diff).ToList();
             else if (mod == 2) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
+            else if (mod == 3) Words = dic.GetWord(x => x.PronScore < diff && x.IsPron).ToList();
         }
         private void Load()
         {
