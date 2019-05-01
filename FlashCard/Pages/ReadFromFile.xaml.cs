@@ -296,9 +296,12 @@ namespace FlashCard.Pages
         }
         private void Insert()
         {
+            int c = 0;
+            int c2 = 0;
             using (var db = new Dictionary())
             {
                 var words = db.GetAll().ToList();
+                c = words.Count;
                 foreach (var item in items)
                 {
                     if (string.IsNullOrWhiteSpace(item.Get.word)) continue;
@@ -328,9 +331,12 @@ namespace FlashCard.Pages
                         db.Update(p);
                     }
                 }
+                var words2 = db.GetAll().ToList();
+                c2 = words2.Count;
             }
             items.Clear();
             Words.Children.Clear();
+            MessageBox.Show($"Words from {c} to {c2}");
         }
         private void Update()
         {
@@ -359,6 +365,33 @@ namespace FlashCard.Pages
             }
             items.Clear();
             Words.Children.Clear();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(Words is null))
+            {
+                Words.Children.Clear();
+                items.Clear();
+                using (var db = new Dictionary())
+                {
+                    var words = db.GetAll()
+                        .Where(x => x.TheWord.Contains(Search.Text))
+                        .OrderBy(x => x.IsMeaning)
+                        .ThenBy(x => x.IsPron)
+                        .ThenBy(x => x.IsSpelling)
+                        .ThenBy(x => x.Meaning)
+                        .ThenBy(x => x.PronScore)
+                        .ThenBy(x => x.Spelling)
+                        .ThenBy(x => x.TheWord).ToList();
+                    foreach (var item in words)
+                    {
+                        var it = new Item(item);
+                        items.Add(it);
+                        Words.Children.Add(it.UpdateVisual());
+                    }
+                }
+            }
         }
     }
 }
