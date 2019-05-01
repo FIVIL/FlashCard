@@ -196,10 +196,10 @@ namespace FlashCard.Pages
                 return b;
             }
             public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron) Get
-                => (this.word.Text, this.def.Text, this.pron.Text, this.pron.Text,
+                => (this.word.Text, this.def.Text, this.per.Text, this.pron.Text,
                 (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked);
             public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron, int defscore, int spescore, int pronscore, bool del, Guid id) Update
-               => (this.word.Text, this.def.Text, this.pron.Text, this.pron.Text,
+               => (this.word.Text, this.def.Text, this.per.Text, this.pron.Text,
                 (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked,
                 int.Parse(defScore.Text), int.Parse(spelScore.Text), int.Parse(PronScore.Text), del, id);
         }
