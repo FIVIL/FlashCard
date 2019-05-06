@@ -133,8 +133,17 @@ namespace FlashCard.Pages
             else
             {
                 var p = ci.Split(':');
-                if (string.IsNullOrWhiteSpace(p[0])) Load(0, int.Parse(p[1]));
-                else Load(int.Parse(p[0]), int.Parse(p[1]));
+                if (p.Length == 2)
+                {
+                    if (string.IsNullOrWhiteSpace(p[0])) Load(0, int.Parse(p[1]));
+                    else Load(int.Parse(p[0]), int.Parse(p[1]));
+                }
+                else
+                {
+                    if (string.IsNullOrWhiteSpace(p[0]) && string.IsNullOrWhiteSpace(p[1])) Load(0, 1, int.Parse(p[2]));
+                    else if (string.IsNullOrWhiteSpace(p[1])) Load(int.Parse(p[0]), 1, int.Parse(p[2]));
+                    else if (string.IsNullOrWhiteSpace(p[0])) Load(0, int.Parse(p[1]), int.Parse(p[2]));
+                }
             }
 
         }
@@ -154,6 +163,14 @@ namespace FlashCard.Pages
             else if (mod == 2) Words = dic.GetWord(x => x.Meaning < diff && x.IsMeaning).ToList();
             else if (mod == 3) Words = dic.GetWord(x => x.PronScore < diff && x.IsPron).ToList();
         }
+        private void LoadBasic(int diffMin, int diffMax)
+        {
+            index = -1;
+            if (mod == 0) Words = dic.GetWord(x => x.Meaning < diffMin && x.IsMeaning && x.Meaning > diffMax).ToList();
+            else if (mod == 1) Words = dic.GetWord(x => x.IsSpelling && x.Spelling < diffMin && x.Spelling > diffMax).ToList();
+            else if (mod == 2) Words = dic.GetWord(x => x.Meaning < diffMin & x.Meaning > diffMax && x.IsMeaning).ToList();
+            else if (mod == 3) Words = dic.GetWord(x => x.PronScore < diffMin && x.PronScore > diffMax && x.IsPron).ToList();
+        }
         private void Load()
         {
 
@@ -170,6 +187,13 @@ namespace FlashCard.Pages
         private void Load(int max, int diff)
         {
             LoadBasic(diff);
+            if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
+            else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
+            next();
+        }
+        private void Load(int max, int diffMin, int diffMax)
+        {
+            LoadBasic(diffMin, diffMax);
             if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
             next();
