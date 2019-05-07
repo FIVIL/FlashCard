@@ -30,7 +30,7 @@
                 Padding="5"
             VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Margin="10">
             <StackPanel>
-                <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
+                <Button Background="Aqua" Margin="1" Click="Button_Click_2">Hear</Button>
                 <TextBlock x:Name="MeaningScore"/>
                 <TextBlock x:Name="SpellScore"/>
             </StackPanel>
@@ -39,7 +39,7 @@
                 Padding="5"
             VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Margin="10">
             <StackPanel>
-                <Button Background="Aqua" Margin="1" Click="Button_Click_2">Hear</Button>
+                <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
                 <Button Background="Green" Margin="1" Click="Button_Click">OK</Button>
                 <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
             </StackPanel>
