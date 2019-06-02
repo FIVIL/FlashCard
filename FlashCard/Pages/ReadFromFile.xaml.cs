@@ -329,6 +329,9 @@ namespace FlashCard.Pages
                     else
                     {
                         tek.Add(p.TheWord);
+                        if (string.IsNullOrWhiteSpace(p.Definitions)) p.Persian = item.Get.def;
+                        if (string.IsNullOrWhiteSpace(p.Persian)) p.Persian = item.Get.per;
+                        if (string.IsNullOrWhiteSpace(p.Pron)) p.Persian = item.Get.pron;
                         p.Meaning -= (int.Parse(Cat.Text) + 5);
                         db.Update(p);
                     }
