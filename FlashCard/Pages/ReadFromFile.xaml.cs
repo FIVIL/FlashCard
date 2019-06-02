@@ -296,6 +296,7 @@ namespace FlashCard.Pages
         }
         private void Insert()
         {
+            var tek = new List<string>();
             int c = 0;
             int c2 = 0;
             using (var db = new Dictionary())
@@ -327,7 +328,8 @@ namespace FlashCard.Pages
                     }
                     else
                     {
-                        p.Meaning -= 5;
+                        tek.Add(p.TheWord);
+                        p.Meaning -= (int.Parse(Cat.Text) + 5);
                         db.Update(p);
                     }
                 }
@@ -336,7 +338,7 @@ namespace FlashCard.Pages
             }
             items.Clear();
             Words.Children.Clear();
-            MessageBox.Show($"Words from {c} to {c2}");
+            MessageBox.Show($"Words from {c} to {c2},{Newtonsoft.Json.JsonConvert.SerializeObject(tek,Newtonsoft.Json.Formatting.Indented)}");
         }
         private void Update()
         {
