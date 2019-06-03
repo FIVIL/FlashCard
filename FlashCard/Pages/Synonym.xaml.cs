@@ -198,5 +198,45 @@ namespace FlashCard.Pages
             else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
             next();
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            if (index > 0)
+            {
+                index--;
+                if (mod == 0)
+                {
+                    word.Text = Current.TheWord;
+                    Definition.Text = string.Empty;
+                }
+                else if (mod == 1)
+                {
+                    word.Text = string.Empty;
+                    syn.SpeakAsync(Current.TheWord);
+                    Definition.Text = string.Empty;
+                }
+                else if (mod == 2)
+                {
+                    word.Text = string.Empty;
+                    Definition.Text = Current.Definitions;
+                }
+                else if (mod == 3)
+                {
+                    word.Text = Current.TheWord;
+                    Definition.Text = string.Empty;
+                }
+                Persian.Text = string.Empty;
+                Pron.Text = string.Empty;
+                MeaningScore.Text = Current.Meaning.ToString();
+                SpellScore.Text = Current.Spelling.ToString();
+                Counter.Text = $"{index} from {Words.Count}";
+            }
+            else MessageBox.Show("ended");
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            next();
+        }
     }
 }

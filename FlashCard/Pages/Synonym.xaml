@@ -22,8 +22,8 @@
             <StackPanel HorizontalAlignment="Stretch">
                 <TextBlock x:Name="word" Text="Word"/>
                 <TextBlock x:Name="Definition" TextWrapping="Wrap" Text="TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTe"/>
-                <TextBlock x:Name="Persian"/>
-                <TextBlock x:Name="Pron"/>
+                <TextBlock x:Name="Persian" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Pron" TextWrapping="Wrap"/>
             </StackPanel>
         </Border>
         <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
@@ -38,11 +38,17 @@
         <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
                 Padding="5"
             VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Margin="10">
-            <StackPanel>
-                <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
-                <Button Background="Green" Margin="1" Click="Button_Click">OK</Button>
-                <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
-            </StackPanel>
+            <DockPanel LastChildFill="True">
+                <DockPanel Margin="1" DockPanel.Dock="Right">
+                    <Button Margin="1" Click="Button_Click_5" DockPanel.Dock="Bottom">Prev</Button>
+                    <Button  Margin="1" Click="Button_Click_6" DockPanel.Dock="Top">Next</Button>
+                </DockPanel>
+                <StackPanel DockPanel.Dock="Left">
+                    <Button Background="Aqua" Margin="1" Click="Button_Click_3">Reveal</Button>
+                    <Button Background="Green" Margin="1" Click="Button_Click">OK</Button>
+                    <Button Background="Red" Margin="1" Click="Button_Click_1">Reject</Button>
+                </StackPanel>
+            </DockPanel>
         </Border>
         <Border BorderBrush="Black" BorderThickness="2" Background="White" CornerRadius="5"
                 Padding="5"
