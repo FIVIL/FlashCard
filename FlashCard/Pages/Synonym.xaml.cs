@@ -85,26 +85,29 @@ namespace FlashCard.Pages
                 {
                     word.Text = Current.TheWord;
                     Definition.Text = string.Empty;
+                    MeaningScore.Text = Current.Meaning.ToString();
                 }
                 else if (mod == 1)
                 {
                     word.Text = string.Empty;
                     syn.SpeakAsync(Current.TheWord);
                     Definition.Text = string.Empty;
+                    MeaningScore.Text = Current.Spelling.ToString();
                 }
                 else if (mod == 2)
                 {
                     word.Text = string.Empty;
                     Definition.Text = Current.Definitions;
+                    MeaningScore.Text = Current.Meaning.ToString();
                 }
                 else if (mod == 3)
                 {
                     word.Text = Current.TheWord;
                     Definition.Text = string.Empty;
+                    MeaningScore.Text = Current.Meaning.ToString();
                 }
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;
-                MeaningScore.Text = Current.Meaning.ToString();
                 SpellScore.Text = Current.Spelling.ToString();
                 Counter.Text = $"{index} from {Words.Count}";
             }
