@@ -60,19 +60,35 @@ namespace FlashCard.Pages
                     if (tb.Text.Trim().Equals(Current.TheWord.Trim(), StringComparison.InvariantCultureIgnoreCase))
                     {
                         tb.Background = Brushes.GreenYellow;
-                        Definition.Text = Current.Definitions;
-                        Persian.Text = Current.Persian;
-                        Pron.Text = Current.Pron;
                         word.Text = Current.TheWord;
                     }
                     else tb.Background = Brushes.OrangeRed;
                 };
-                tb.KeyDown += (se, ev) =>
+                tb.KeyUp += (se, ev) =>
                 {
                     if (ev.Key == Key.Enter)
                     {
-                        if (tb.Text.Trim().Equals(Current.TheWord.Trim(),StringComparison.InvariantCultureIgnoreCase))
-                        { next(); }
+                        if (tb.Text.Trim().Equals(Current.TheWord.Trim(), StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            Current.Spelling++;
+                            next();
+                        }
+                    }
+                    if (ev.Key == Key.OemComma)
+                    {
+                        if (tb.Text.Replace(",", "").Trim().Equals(Current.TheWord.Trim(), StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            tb.Text = string.Empty;
+                            tb.Background = Brushes.White;
+                        }
+                    }
+                    if (ev.Key == Key.RightShift)
+                    {
+                        if (!tb.Text.Trim().Equals(Current.TheWord.Trim(), StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            Current.Spelling--;
+                            next();
+                        }
                     }
                 };
                 container.Children.Add(tb);
@@ -119,8 +135,10 @@ namespace FlashCard.Pages
                 else if (mod == 1)
                 {
                     word.Text = string.Empty;
+                    Definition.Text = Current.Definitions;
+                    Persian.Text = Current.Persian;
+                    Pron.Text = Current.Pron;
                     syn.SpeakAsync(Current.TheWord);
-                    Definition.Text = string.Empty;
                     tb.Text = string.Empty;
                     tb.Focus();
                     Keyboard.Focus(tb);
