@@ -29,6 +29,7 @@ namespace FlashCard.Pages
         private SpeechSynthesizer syn;
         private Random rnd;
         private int mod;
+        private TextBox tb;
         public Synonym(int mod)
         {
             InitializeComponent();
@@ -39,7 +40,6 @@ namespace FlashCard.Pages
             rnd = new Random();
             syn.Volume = 100;
             syn.Rate = -2;
-            Load();
             Unloaded += (e, s) =>
             {
                 dic.Dispose();
@@ -47,8 +47,26 @@ namespace FlashCard.Pages
             };
             if (mod == 0) Mode.Text = "Synonym";
             else if (mod == 2) Mode.Text = "Reverse Synonym";
-            else if (mod == 1) Mode.Text = "Spelling";
+            else if (mod == 1)
+            {
+                Mode.Text = "Spelling";
+                tb = new TextBox()
+                {
+                    Margin = new Thickness(1),
+                    FontSize = 15
+                };
+                tb.TextChanged += (se, ev) =>
+                {
+                    if (tb.Text == Current.TheWord)
+                    {
+                        tb.Background = Brushes.GreenYellow;
+                    }
+                    else tb.Background = Brushes.OrangeRed;
+                };
+                container.Children.Add(tb);
+            }
             else if (mod == 3) Mode.Text = "Pronunciation";
+            Load();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -85,29 +103,30 @@ namespace FlashCard.Pages
                 {
                     word.Text = Current.TheWord;
                     Definition.Text = string.Empty;
-                    MeaningScore.Text = Current.Meaning.ToString();
                 }
                 else if (mod == 1)
                 {
                     word.Text = string.Empty;
                     syn.SpeakAsync(Current.TheWord);
                     Definition.Text = string.Empty;
-                    MeaningScore.Text = Current.Spelling.ToString();
+                    tb.Text = string.Empty;
+                    tb.Focus();
+                    Keyboard.Focus(tb);
+                    tb.Background = Brushes.White;
                 }
                 else if (mod == 2)
                 {
                     word.Text = string.Empty;
                     Definition.Text = Current.Definitions;
-                    MeaningScore.Text = Current.Meaning.ToString();
                 }
                 else if (mod == 3)
                 {
                     word.Text = Current.TheWord;
                     Definition.Text = string.Empty;
-                    MeaningScore.Text = Current.Meaning.ToString();
                 }
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;
+                MeaningScore.Text = Current.Meaning.ToString();
                 SpellScore.Text = Current.Spelling.ToString();
                 Counter.Text = $"{index} from {Words.Count}";
             }
@@ -217,6 +236,10 @@ namespace FlashCard.Pages
                     word.Text = string.Empty;
                     syn.SpeakAsync(Current.TheWord);
                     Definition.Text = string.Empty;
+                    tb.Text = string.Empty;
+                    tb.Focus();
+                    Keyboard.Focus(tb);
+                    tb.Background = Brushes.White;
                 }
                 else if (mod == 2)
                 {
@@ -226,7 +249,7 @@ namespace FlashCard.Pages
                 else if (mod == 3)
                 {
                     word.Text = Current.TheWord;
-                    Definition.Text = string.Empty;
+                    Definition.Text = string.Empty;                    
                 }
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;

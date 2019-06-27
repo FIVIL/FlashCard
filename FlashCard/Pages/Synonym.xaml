@@ -19,7 +19,7 @@
                 VerticalAlignment="Top" HorizontalAlignment="Stretch" 
                 CornerRadius="5" Margin="5" Padding="5"
                 BorderBrush="Black" BorderThickness="2">
-            <StackPanel HorizontalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Stretch" x:Name="container">
                 <TextBlock x:Name="word" Text="Word"/>
                 <TextBlock x:Name="Definition" TextWrapping="Wrap" Text="TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTe"/>
                 <TextBlock x:Name="Persian" TextWrapping="Wrap"/>
