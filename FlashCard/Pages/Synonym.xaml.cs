@@ -57,11 +57,23 @@ namespace FlashCard.Pages
                 };
                 tb.TextChanged += (se, ev) =>
                 {
-                    if (tb.Text == Current.TheWord)
+                    if (tb.Text.Trim().Equals(Current.TheWord.Trim(), StringComparison.InvariantCultureIgnoreCase))
                     {
                         tb.Background = Brushes.GreenYellow;
+                        Definition.Text = Current.Definitions;
+                        Persian.Text = Current.Persian;
+                        Pron.Text = Current.Pron;
+                        word.Text = Current.TheWord;
                     }
                     else tb.Background = Brushes.OrangeRed;
+                };
+                tb.KeyDown += (se, ev) =>
+                {
+                    if (ev.Key == Key.Enter)
+                    {
+                        if (tb.Text.Trim().Equals(Current.TheWord.Trim(),StringComparison.InvariantCultureIgnoreCase))
+                        { next(); }
+                    }
                 };
                 container.Children.Add(tb);
             }
@@ -249,7 +261,7 @@ namespace FlashCard.Pages
                 else if (mod == 3)
                 {
                     word.Text = Current.TheWord;
-                    Definition.Text = string.Empty;                    
+                    Definition.Text = string.Empty;
                 }
                 Persian.Text = string.Empty;
                 Pron.Text = string.Empty;
