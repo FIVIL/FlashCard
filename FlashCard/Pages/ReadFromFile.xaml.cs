@@ -320,7 +320,7 @@ namespace FlashCard.Pages
                             Spelling = -int.Parse(Spel.Text),
                             PronScore = -int.Parse(Cat3.Text),
                             IsMeaning = item.Get.mean,
-                            IsSpelling = item.Get.sp,
+                            IsSpelling = item.Get.sp || (AllSpell.IsChecked ?? false),
                             IsPron = item.Get.ispron
                         };
                         Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(w));
@@ -341,7 +341,7 @@ namespace FlashCard.Pages
             }
             items.Clear();
             Words.Children.Clear();
-            MessageBox.Show($"Words from {c} to {c2},{Newtonsoft.Json.JsonConvert.SerializeObject(tek,Newtonsoft.Json.Formatting.Indented)}");
+            MessageBox.Show($"Words from {c} to {c2},{Newtonsoft.Json.JsonConvert.SerializeObject(tek, Newtonsoft.Json.Formatting.Indented)}");
         }
         private void Update()
         {
