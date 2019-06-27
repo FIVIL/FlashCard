@@ -317,8 +317,8 @@ namespace FlashCard.Pages
                             Persian = item.Get.per,
                             Pron = item.Get.pron,
                             Meaning = -int.Parse(Cat.Text),
-                            Spelling = 0,
-                            PronScore = 0,
+                            Spelling = -int.Parse(Spel.Text),
+                            PronScore = -int.Parse(Cat3.Text),
                             IsMeaning = item.Get.mean,
                             IsSpelling = item.Get.sp,
                             IsPron = item.Get.ispron

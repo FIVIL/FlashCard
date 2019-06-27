@@ -13,7 +13,14 @@
     </UserControl.Resources>
     <Grid Margin="20 0">
         <StackPanel>
-            <TextBox x:Name="Cat" Margin="5" Text="0"/>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock>Meaning:</TextBlock>
+                <TextBox Width="140" x:Name="Cat" Text="0"/>
+                <TextBlock>Pron:</TextBlock>
+                <TextBox Width="140" x:Name="Cat3" Text="0"/>
+                <TextBlock>Spelling:</TextBlock>
+                <TextBox Width="140" x:Name="Spel" Text="0"/>
+            </StackPanel>
             <TextBox x:Name="Search" Margin="5" TextChanged="Search_TextChanged"/>
             <ScrollViewer x:Name="SV" VerticalAlignment="Top" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Height="800">
                 <StackPanel x:Name="Words">
