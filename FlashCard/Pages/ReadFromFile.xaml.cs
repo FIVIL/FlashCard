@@ -25,6 +25,8 @@ namespace FlashCard.Pages
         private List<Item> items;
         public static int index;
         private int mod;
+        private List<string> MeanCat;
+        private List<string> SpelCat;
         public ReadFromFile(int mod)
         {
             InitializeComponent();
@@ -34,6 +36,11 @@ namespace FlashCard.Pages
             items = new List<Item>();
             Words.Children.Clear();
             index = 0;
+            using (var db = new Dictionary())
+            {
+                MeanCat = db.GetAll().Select(x => x.CategoryMeaning).ToList();
+                SpelCat = db.GetAll().Select(x => x.CategorySpelling).ToList();
+            }
         }
         class Item
         {
@@ -398,6 +405,11 @@ namespace FlashCard.Pages
                     }
                 }
             }
+        }
+
+        private void MeanCat_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

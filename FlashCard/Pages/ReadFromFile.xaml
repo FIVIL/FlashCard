@@ -21,6 +21,10 @@
                 <TextBlock>Spelling:</TextBlock>
                 <TextBox Width="50" x:Name="Spel" Text="0"/>
                 <CheckBox x:Name="AllSpell" Margin="10,0"/>
+                <TextBlock>Meaning Cat:</TextBlock>
+                <TextBox Width="50" x:Name="meanCat" Text="0"/>
+                <TextBlock>Spel Cat:</TextBlock>
+                <TextBox Width="50" x:Name="SpelCatt" Text="0"/>
             </StackPanel>
             <TextBox x:Name="Search" Margin="5" TextChanged="Search_TextChanged"/>
             <ScrollViewer x:Name="SV" VerticalAlignment="Top" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Height="800">

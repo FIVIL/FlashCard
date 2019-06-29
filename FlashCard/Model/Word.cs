@@ -28,5 +28,8 @@ namespace FlashCard.Model
         public bool IsSpelling { get; set; }
         public bool IsPron { get; set; }
 
+        public string CategoryMeaning { get; set; }
+        public string CategorySpelling { get; set; }
+
     }
 }
