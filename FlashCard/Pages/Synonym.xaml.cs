@@ -56,6 +56,7 @@ namespace FlashCard.Pages
             else if (mod == 1)
             {
                 Cats = dic.GetAll().Select(x => x.CategorySpelling).Distinct().ToList();
+                Categories.ItemsSource = Cats;
                 Mode.Text = "Spelling";
                 tb = new TextBox()
                 {
