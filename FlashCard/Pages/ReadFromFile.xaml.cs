@@ -329,7 +329,9 @@ namespace FlashCard.Pages
                             PronScore = -int.Parse(Cat3.Text),
                             IsMeaning = item.Get.mean,
                             IsSpelling = item.Get.sp || (AllSpell.IsChecked ?? false),
-                            IsPron = item.Get.ispron
+                            IsPron = item.Get.ispron,
+                            CategoryMeaning = meanCat.Text,
+                            CategorySpelling = SpelCatt.Text
                         };
                         Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(w));
                         db.Insert(w);
