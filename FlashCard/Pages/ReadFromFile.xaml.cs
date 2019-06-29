@@ -25,8 +25,6 @@ namespace FlashCard.Pages
         private List<Item> items;
         public static int index;
         private int mod;
-        private List<string> MeanCat;
-        private List<string> SpelCat;
         public ReadFromFile(int mod)
         {
             InitializeComponent();
@@ -36,11 +34,6 @@ namespace FlashCard.Pages
             items = new List<Item>();
             Words.Children.Clear();
             index = 0;
-            using (var db = new Dictionary())
-            {
-                MeanCat = db.GetAll().Select(x => x.CategoryMeaning).ToList();
-                SpelCat = db.GetAll().Select(x => x.CategorySpelling).ToList();
-            }
         }
         class Item
         {
@@ -87,6 +80,12 @@ namespace FlashCard.Pages
                 this.pron = new TextBox();
                 this.pron.Margin = new Thickness(1);
                 this.pron.Text = w.Pron;
+                this.catmean = new TextBox();
+                this.catmean.Margin = new Thickness(1);
+                this.catmean.Text = w.CategoryMeaning;
+                this.catspell = new TextBox();
+                this.catspell.Margin = new Thickness(1);
+                this.catspell.Text = w.CategorySpelling;
                 Spelling = new CheckBox();
                 Spelling.IsChecked = w.IsSpelling;
                 Spelling.Margin = new Thickness(0, 0, 3, 0);
@@ -120,6 +119,8 @@ namespace FlashCard.Pages
             private readonly CheckBox Meaning;
             private readonly CheckBox Spelling;
             private readonly CheckBox IsPron;
+            private readonly TextBox catmean;
+            private readonly TextBox catspell;
             private Guid id;
             private bool del = false;
 
@@ -181,6 +182,10 @@ namespace FlashCard.Pages
                 sppp.Children.Add(this.PronScore);
                 sppp.Children.Add(new TextBlock() { Text = $"Spelling: ", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
                 sppp.Children.Add(this.spelScore);
+                sppp.Children.Add(new TextBlock() { Text = $"Meaning Category: ", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
+                sppp.Children.Add(this.catmean);
+                sppp.Children.Add(new TextBlock() { Text = $"Spelling Category: ", FontSize = 10, Margin = new Thickness(0, 0, 3, 0) });
+                sppp.Children.Add(this.catspell);
                 sp.Children.Add(sppp);
                 var spp = new StackPanel();
                 spp.Margin = new Thickness(1);
@@ -205,10 +210,10 @@ namespace FlashCard.Pages
             public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron) Get
                 => (this.word.Text, this.def.Text, this.per.Text, this.pron.Text,
                 (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked);
-            public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron, int defscore, int spescore, int pronscore, bool del, Guid id) Update
+            public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron, int defscore, int spescore, int pronscore, bool del, Guid id,string catmena,string catspell) Update
                => (this.word.Text, this.def.Text, this.per.Text, this.pron.Text,
                 (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked,
-                int.Parse(defScore.Text), int.Parse(spelScore.Text), int.Parse(PronScore.Text), del, id);
+                int.Parse(defScore.Text), int.Parse(spelScore.Text), int.Parse(PronScore.Text), del, id,catmean.Text,catspell.Text);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -374,8 +379,8 @@ namespace FlashCard.Pages
                             Spelling = item.Update.spescore,
                             IsPron = item.Update.ispron,
                             PronScore = item.Update.pronscore,
-                            CategoryMeaning = meanCat.Text,
-                            CategorySpelling = SpelCatt.Text
+                            CategoryMeaning = item.Update.catmena,
+                            CategorySpelling = item.Update.catspell
                         });
                     }
                 }

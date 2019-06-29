@@ -30,6 +30,7 @@ namespace FlashCard.Pages
         private Random rnd;
         private int mod;
         private TextBox tb;
+        private List<string> Cats;
         public Synonym(int mod)
         {
             InitializeComponent();
@@ -45,10 +46,16 @@ namespace FlashCard.Pages
                 dic.Dispose();
                 syn.Dispose();
             };
-            if (mod == 0) Mode.Text = "Synonym";
+            if (mod == 0)
+            {
+                Mode.Text = "Synonym";
+                Cats = dic.GetAll().Select(x => x.CategoryMeaning).Distinct().ToList();
+                Categories.ItemsSource = Cats;
+            }
             else if (mod == 2) Mode.Text = "Reverse Synonym";
             else if (mod == 1)
             {
+                Cats = dic.GetAll().Select(x => x.CategorySpelling).Distinct().ToList();
                 Mode.Text = "Spelling";
                 tb = new TextBox()
                 {
@@ -158,7 +165,7 @@ namespace FlashCard.Pages
                 Pron.Text = string.Empty;
                 MeaningScore.Text = Current.Meaning.ToString();
                 SpellScore.Text = Current.Spelling.ToString();
-                Counter.Text = $"{index} from {Words.Count}";
+                Counter.Text = $"{index}/{Words.Count}";
             }
             else MessageBox.Show("ended");
         }
@@ -228,12 +235,14 @@ namespace FlashCard.Pages
 
             LoadBasic();
             Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
+            Categorize();
             next();
         }
         private void Load(int max)
         {
             LoadBasic();
             Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
+            Categorize();
             next();
         }
         private void Load(int max, int diff)
@@ -241,6 +250,7 @@ namespace FlashCard.Pages
             LoadBasic(diff);
             if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
+            Categorize();
             next();
         }
         private void Load(int max, int diffMin, int diffMax)
@@ -248,9 +258,15 @@ namespace FlashCard.Pages
             LoadBasic(diffMin, diffMax);
             if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
             else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
+            Categorize();
             next();
         }
-
+        private void Categorize()
+        {
+            if ((Categories.SelectedValue as string) is null) return;
+            if (mod == 1) Words = Words.Where(x => x.CategorySpelling.Equals(Categories.SelectedValue as string, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            else Words = Words.Where(x => x.CategoryMeaning.Equals(Categories.SelectedValue as string, StringComparison.InvariantCultureIgnoreCase)).ToList();
+        }
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             if (index > 0)
@@ -285,7 +301,7 @@ namespace FlashCard.Pages
                 Pron.Text = string.Empty;
                 MeaningScore.Text = Current.Meaning.ToString();
                 SpellScore.Text = Current.Spelling.ToString();
-                Counter.Text = $"{index} from {Words.Count}";
+                Counter.Text = $"{index}/{Words.Count}";
             }
             else MessageBox.Show("ended");
         }
@@ -293,6 +309,11 @@ namespace FlashCard.Pages
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             next();
+        }
+
+        private void Categories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Button_Click_4(null, null);
         }
     }
 }

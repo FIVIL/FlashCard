@@ -54,7 +54,14 @@
                 Padding="5"
             VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Margin="10">
             <StackPanel>
-                <TextBlock x:Name="Counter"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="Counter" Grid.Column="0"/>
+                    <ComboBox x:Name="Categories" Grid.Column="1" SelectionChanged="Categories_SelectionChanged"/>
+                </Grid>
                 <TextBox x:Name="CountImportance" Margin="1" FontSize="15"/>
                 <Button Background="Aqua" Margin="1" Click="Button_Click_4">New</Button>
             </StackPanel>
