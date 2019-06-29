@@ -373,7 +373,9 @@ namespace FlashCard.Pages
                             Meaning = item.Update.defscore,
                             Spelling = item.Update.spescore,
                             IsPron = item.Update.ispron,
-                            PronScore = item.Update.pronscore
+                            PronScore = item.Update.pronscore,
+                            CategoryMeaning = meanCat.Text,
+                            CategorySpelling = SpelCatt.Text
                         });
                     }
                 }
