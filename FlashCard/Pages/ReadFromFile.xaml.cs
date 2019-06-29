@@ -306,8 +306,9 @@ namespace FlashCard.Pages
                 foreach (var item in items)
                 {
                     if (string.IsNullOrWhiteSpace(item.Get.word)) continue;
-                    var p = words.FirstOrDefault(x => x.TheWord.Contains(item.Get.word));
-                    if (p is null) p = words.FirstOrDefault(x => item.Get.word.Contains(x.TheWord));
+                    var p = words.FirstOrDefault(x => x.TheWord.Equals(item.Get.word, StringComparison.InvariantCultureIgnoreCase));
+
+                    //if (p is null) p = words.FirstOrDefault(x => item.Get.word.Contains(x.TheWord));
                     if (p is null)
                     {
                         var w = new Word()
