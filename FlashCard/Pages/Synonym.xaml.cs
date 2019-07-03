@@ -98,6 +98,17 @@ namespace FlashCard.Pages
                             next();
                         }
                     }
+                    if (ev.Key == Key.LeftShift)
+                    {
+                        syn.SpeakAsync(Current.TheWord);
+                    }
+                    if (ev.Key == Key.Delete)
+                    {
+                        Definition.Text = Current.Definitions;
+                        Persian.Text = Current.Persian;
+                        Pron.Text = Current.Pron;
+                        word.Text = Current.TheWord;
+                    }
                 };
                 container.Children.Add(tb);
             }
