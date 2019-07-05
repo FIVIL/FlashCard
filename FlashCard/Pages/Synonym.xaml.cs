@@ -79,6 +79,7 @@ namespace FlashCard.Pages
                         if (tb.Text.Trim().Equals(Current.TheWord.Trim(), StringComparison.InvariantCultureIgnoreCase))
                         {
                             Current.Spelling++;
+                            dic.Update(Current);
                             next();
                         }
                     }
@@ -95,6 +96,7 @@ namespace FlashCard.Pages
                         if (!tb.Text.Trim().Equals(Current.TheWord.Trim(), StringComparison.InvariantCultureIgnoreCase))
                         {
                             Current.Spelling--;
+                            dic.Update(Current);
                             next();
                         }
                     }
