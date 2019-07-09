@@ -210,10 +210,10 @@ namespace FlashCard.Pages
             public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron) Get
                 => (this.word.Text, this.def.Text, this.per.Text, this.pron.Text,
                 (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked);
-            public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron, int defscore, int spescore, int pronscore, bool del, Guid id,string catmena,string catspell) Update
+            public (string word, string def, string per, string pron, bool mean, bool sp, bool ispron, int defscore, int spescore, int pronscore, bool del, Guid id, string catmena, string catspell) Update
                => (this.word.Text, this.def.Text, this.per.Text, this.pron.Text,
                 (bool)Meaning.IsChecked, (bool)Spelling.IsChecked, (bool)IsPron.IsChecked,
-                int.Parse(defScore.Text), int.Parse(spelScore.Text), int.Parse(PronScore.Text), del, id,catmean.Text,catspell.Text);
+                int.Parse(defScore.Text), int.Parse(spelScore.Text), int.Parse(PronScore.Text), del, id, catmean.Text, catspell.Text);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -387,18 +387,36 @@ namespace FlashCard.Pages
             }
             items.Clear();
             Words.Children.Clear();
+            ListWordSearch.Clear();
         }
 
+        static List<Word> ListWordSearch = new List<Word>();
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (ListWordSearch.Count == 0)
+            {
+                using (var db = new Dictionary())
+                {
+                    ListWordSearch = db.GetAll().ToList();
+                }
+            }
             if (!(Words is null))
             {
                 Words.Children.Clear();
                 items.Clear();
-                using (var db = new Dictionary())
-                {
-                    var words = db.GetAll()
-                        .Where(x => x.TheWord.Contains(Search.Text))
+                //using (var db = new Dictionary())
+                //{
+                //var words = db.GetAll()
+                //    .Where(x => x.TheWord.Contains(Search.Text, new StEqual()))
+                //    .OrderBy(x => x.IsMeaning)
+                //    .ThenBy(x => x.IsPron)
+                //    .ThenBy(x => x.IsSpelling)
+                //    .ThenBy(x => x.Meaning)
+                //    .ThenBy(x => x.PronScore)
+                //    .ThenBy(x => x.Spelling)
+                //    .ThenBy(x => x.TheWord).ToList();
+                var words = ListWordSearch
+                        .Where(x => x.TheWord.ToUpper().Contains(Search.Text.ToUpper()))
                         .OrderBy(x => x.IsMeaning)
                         .ThenBy(x => x.IsPron)
                         .ThenBy(x => x.IsSpelling)
@@ -406,13 +424,13 @@ namespace FlashCard.Pages
                         .ThenBy(x => x.PronScore)
                         .ThenBy(x => x.Spelling)
                         .ThenBy(x => x.TheWord).ToList();
-                    foreach (var item in words)
-                    {
-                        var it = new Item(item);
-                        items.Add(it);
-                        Words.Children.Add(it.UpdateVisual());
-                    }
+                foreach (var item in words)
+                {
+                    var it = new Item(item);
+                    items.Add(it);
+                    Words.Children.Add(it.UpdateVisual());
                 }
+                //}
             }
         }
 
