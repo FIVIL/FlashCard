@@ -194,6 +194,19 @@ namespace FlashCard.Pages
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            if (Categories.SelectedValue.ToString().Equals("400"))
+            {
+                if (CountImportance.Text.Contains(':'))
+                {
+                    var s = CountImportance.Text.Split(':');
+                    LoadFor400(int.Parse(s[0]), int.Parse(s[1]));
+                }
+                else
+                {
+                    LoadFor400(int.Parse(CountImportance.Text));
+                }
+                return;
+            }
             var ci = CountImportance.Text;
             if (string.IsNullOrWhiteSpace(ci))
             {
@@ -257,6 +270,21 @@ namespace FlashCard.Pages
             LoadBasic();
             Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
             Categorize();
+            next();
+        }
+        private void LoadFor400(int min, int diff)
+        {
+            LoadBasic(diff);
+            Words = Words.Skip(min * 20).Take(20).OrderBy(x => rnd.Next(Words.Count)).ToList();
+            Categorize();
+            next();
+        }
+        private void LoadFor400(int min)
+        {
+            LoadBasic();
+            //first cat then choose
+            Categorize();
+            Words = Words.Skip(min * 20).Take(20).OrderBy(x => rnd.Next(Words.Count)).ToList();      
             next();
         }
         private void Load(int max, int diff)
