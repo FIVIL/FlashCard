@@ -194,7 +194,7 @@ namespace FlashCard.Pages
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            if (Categories.SelectedValue.ToString().Equals("400"))
+            if (Categories.SelectedIndex != -1 && Categories.SelectedValue.ToString().Equals("400"))
             {
                 if (CountImportance.Text.Contains(':'))
                 {
@@ -284,7 +284,7 @@ namespace FlashCard.Pages
             LoadBasic();
             //first cat then choose
             Categorize();
-            Words = Words.Skip(min * 20).Take(20).OrderBy(x => rnd.Next(Words.Count)).ToList();      
+            Words = Words.Skip(min * 20).Take(20).OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void Load(int max, int diff)
