@@ -345,9 +345,12 @@ namespace FlashCard.Pages
                     {
                         tek.Add(p.TheWord);
                         if (string.IsNullOrWhiteSpace(p.Definitions)) p.Definitions = item.Get.def;
+                        else p.Definitions = $"{p.Definitions}, {item.Get.def}";
                         if (string.IsNullOrWhiteSpace(p.Persian)) p.Persian = item.Get.per;
+                        else p.Persian = $"{p.Persian}, \"{item.Get.per}\"";
                         if (string.IsNullOrWhiteSpace(p.Pron)) p.Pron = item.Get.pron;
-                        p.Meaning -= (int.Parse(Cat.Text) + 5);
+                        else p.Pron = $"{p.Pron}, {item.Get.pron}";
+                        p.Meaning -= (int.Parse(Cat.Text));
                         db.Update(p);
                     }
                 }
