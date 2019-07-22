@@ -22,14 +22,13 @@
                      x:Name="Original" TextWrapping="Wrap"
                      AcceptsReturn="True" Margin="10"/>
             <TextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                     x:Name="Type" TextWrapping="Wrap"
+                     x:Name="Type" TextWrapping="Wrap" KeyUp="Type_KeyUp"
                      AcceptsReturn="True" Margin="10" Grid.Column="1"/>
         </Grid>
         <DockPanel Grid.Row="1" LastChildFill="False">
             <Button Content="Start" Padding="10 0" Margin="10 0" Click="Button_Click"/>
             <Button Content="Done" Padding="10 0" Margin="10 0" Click="Button_Click_2"/>
             <TextBlock x:Name="Clock" Margin="10 0" DockPanel.Dock="Right" Width="80" TextBlock.TextAlignment="Center">Hi</TextBlock>
-            <Button Padding="10 0" Margin="10 0" DockPanel.Dock="Right" Click="Button_Click_1">Puase/Resume</Button>
         </DockPanel> 
     </Grid>
 </UserControl>

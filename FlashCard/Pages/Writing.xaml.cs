@@ -101,5 +101,16 @@ namespace FlashCard.Pages
             }
             else MessageBox.Show("missmatch");
         }
+        bool p2 = false;
+        private void Type_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.RightShift)
+            {
+                if (!p2)
+                    syn.Pause();
+                else syn.Resume();
+                p2 = !p2;
+            }
+        }
     }
 }
