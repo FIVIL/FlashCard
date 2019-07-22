@@ -99,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Writing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Dictionary.cs" />
@@ -114,6 +118,9 @@
     </Compile>
     <Compile Include="Pages\Synonym.xaml.cs">
       <DependentUpon>Synonym.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Writing.xaml.cs">
+      <DependentUpon>Writing.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
