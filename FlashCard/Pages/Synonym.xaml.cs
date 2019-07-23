@@ -274,9 +274,11 @@ namespace FlashCard.Pages
         }
         private void LoadFor400(int min, int diff)
         {
-            LoadBasic(diff);
-            Words = Words.Skip(min * 20).Take(20).OrderBy(x => rnd.Next(Words.Count)).ToList();
+            LoadBasic();
             Categorize();
+            Words = Words.Skip(min * 20).Take(20)
+                .Where(x => x.Meaning < diff)
+                .OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void LoadFor400(int min)
