@@ -276,7 +276,7 @@ namespace FlashCard.Pages
         {
             LoadBasic();
             Categorize();
-            Words = Words.Skip(min * 20).Take(20)
+            Words = Words.Take((min + 1) * 20)
                 .Where(x => x.Meaning < diff)
                 .OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
@@ -286,7 +286,7 @@ namespace FlashCard.Pages
             LoadBasic();
             //first cat then choose
             Categorize();
-            Words = Words.Skip(min * 20).Take(20).OrderBy(x => rnd.Next(Words.Count)).ToList();
+            Words = Words.Take((min + 1) * 20).OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void Load(int max, int diff)
