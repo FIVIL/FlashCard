@@ -283,6 +283,7 @@ namespace FlashCard.Pages
         }
         private void LoadFor400(int min)
         {
+            //fuck github
             LoadBasic();
             //first cat then choose
             Categorize();
