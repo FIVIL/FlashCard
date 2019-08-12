@@ -65,16 +65,14 @@ namespace FlashCard.Pages
             foreach (var item in spp)
             {
                 syn.SpeakAsync(item);
-                if (item.Length > 20 && item.Length <= 50)
-                    syn.SpeakAsync(item);
-                else if (item.Length > 50 && item.Length < 100)
+                if (item.Length < 20)
                 {
-                    syn.SpeakAsync(item);
-                    syn.SpeakAsync(item);
+
                 }
+                else if (item.Length >= 20 && item.Length <= 50)
+                    syn.SpeakAsync(item);
                 else
                 {
-                    syn.SpeakAsync(item);
                     syn.SpeakAsync(item);
                     syn.SpeakAsync(item);
                 }
