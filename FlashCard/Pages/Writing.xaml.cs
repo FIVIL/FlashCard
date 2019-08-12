@@ -55,7 +55,7 @@ namespace FlashCard.Pages
             T.Stop();
             text = Original.Text;
             syn.SpeakAsyncCancelAll();
-            var spp = text.Split('.',',');
+            var spp = text.Split('.', ',');
             sp = new Stopwatch();
             sp.Start();
             T.Start();
@@ -64,17 +64,29 @@ namespace FlashCard.Pages
             await Task.Delay(2000);
             foreach (var item in spp)
             {
-                syn.Rate = -9;
                 syn.SpeakAsync(item);
-                syn.Rate = -6;
-                syn.SpeakAsync(item);
+                if (item.Length > 10)
+                    syn.SpeakAsync(item);
+                else if (item.Length > 30)
+                {
+                    syn.SpeakAsync(item);
+                    syn.SpeakAsync(item);
+                }
+                else
+                {
+                    syn.SpeakAsync(item);
+                    syn.SpeakAsync(item);
+                    syn.SpeakAsync(item);
+                }
                 await Task.Delay(3000);
             }
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            syn.SpeakAsyncCancelAll();
             syn.Dispose();
+            T.Stop();
         }
         bool pr = false;
         private void Button_Click_1(object sender, RoutedEventArgs e)
