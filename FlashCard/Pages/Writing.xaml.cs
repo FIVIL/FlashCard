@@ -32,7 +32,7 @@ namespace FlashCard.Pages
             Helpers.mainWindow.Width = 1100;
             Helpers.mainWindow.Top = 10;
             syn = new SpeechSynthesizer();
-            syn.Rate = -5;
+            syn.Rate = -6;
             T = new DispatcherTimer();
             T.Interval = TimeSpan.FromMilliseconds(10);
             T.Tick += (a, c) =>
@@ -49,17 +49,22 @@ namespace FlashCard.Pages
         Stopwatch sp = null;
         DispatcherTimer T = null;
         string text;
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             T.Stop();
             text = Original.Text;
             syn.SpeakAsyncCancelAll();
-            syn.SpeakAsync(text);
+            var spp = text.Split('.',',');
             sp = new Stopwatch();
             sp.Start();
             T.Start();
             Keyboard.Focus(Type);
             Type.Focus();
+            foreach (var item in spp)
+            {
+                syn.SpeakAsync(item);
+                await Task.Delay(2000);
+            }
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
