@@ -64,6 +64,9 @@ namespace FlashCard.Pages
             await Task.Delay(2000);
             foreach (var item in spp)
             {
+                syn.Rate = -9;
+                syn.SpeakAsync(item);
+                syn.Rate = -6;
                 syn.SpeakAsync(item);
                 await Task.Delay(3000);
             }
