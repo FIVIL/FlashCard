@@ -61,6 +61,7 @@ namespace FlashCard.Pages
             T.Start();
             Keyboard.Focus(Type);
             Type.Focus();
+            await Task.Delay(2000);
             foreach (var item in spp)
             {
                 syn.SpeakAsync(item);
