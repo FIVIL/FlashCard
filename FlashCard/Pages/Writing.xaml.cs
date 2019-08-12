@@ -32,7 +32,7 @@ namespace FlashCard.Pages
             Helpers.mainWindow.Width = 1100;
             Helpers.mainWindow.Top = 10;
             syn = new SpeechSynthesizer();
-            syn.Rate = -7;
+            syn.Rate = -8;
             syn.SelectVoiceByHints(VoiceGender.Female);
             T = new DispatcherTimer();
             T.Interval = TimeSpan.FromMilliseconds(10);
@@ -65,7 +65,7 @@ namespace FlashCard.Pages
             foreach (var item in spp)
             {
                 syn.SpeakAsync(item);
-                await Task.Delay(2000);
+                await Task.Delay(3000);
             }
         }
 
