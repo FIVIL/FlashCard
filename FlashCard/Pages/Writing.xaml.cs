@@ -32,7 +32,7 @@ namespace FlashCard.Pages
             Helpers.mainWindow.Width = 1100;
             Helpers.mainWindow.Top = 10;
             syn = new SpeechSynthesizer();
-            syn.Rate = -6;
+            syn.Rate = -7;
             T = new DispatcherTimer();
             T.Interval = TimeSpan.FromMilliseconds(10);
             T.Tick += (a, c) =>
