@@ -207,6 +207,19 @@ namespace FlashCard.Pages
                 }
                 return;
             }
+            if (Categories.SelectedIndex != -1 && Categories.SelectedValue.ToString().Equals("1212"))
+            {
+                if (CountImportance.Text.Contains(':'))
+                {
+                    var s = CountImportance.Text.Split(':');
+                    LoadFor1212(int.Parse(s[0]), int.Parse(s[1]));
+                }
+                else
+                {
+                    LoadFor1212(int.Parse(CountImportance.Text));
+                }
+                return;
+            }
             var ci = CountImportance.Text;
             if (string.IsNullOrWhiteSpace(ci))
             {
@@ -288,6 +301,24 @@ namespace FlashCard.Pages
             //first cat then choose
             Categorize();
             Words = Words.Take((min + 1) * 20).OrderBy(x => rnd.Next(Words.Count)).ToList();
+            next();
+        }
+        private void LoadFor1212(int min, int diff)
+        {
+            LoadBasic();
+            Categorize();
+            Words = Words.Take((min + 1) * 40)
+                .Where(x => x.Meaning < diff)
+                .OrderBy(x => rnd.Next(Words.Count)).ToList();
+            next();
+        }
+        private void LoadFor1212(int min)
+        {
+            //fuck github
+            LoadBasic();
+            //first cat then choose
+            Categorize();
+            Words = Words.Take((min + 1) * 40).OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void Load(int max, int diff)
