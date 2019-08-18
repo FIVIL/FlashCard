@@ -216,6 +216,7 @@ namespace FlashCard.Pages
                 }
                 else
                 {
+                    //test
                     LoadFor1212(int.Parse(CountImportance.Text));
                 }
                 return;
