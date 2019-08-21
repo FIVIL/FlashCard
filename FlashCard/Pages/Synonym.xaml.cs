@@ -221,6 +221,20 @@ namespace FlashCard.Pages
                 }
                 return;
             }
+            if (Categories.SelectedIndex != -1 && Categories.SelectedValue.ToString().Equals("Cna"))
+            {
+                if (CountImportance.Text.Contains(':'))
+                {
+                    var s = CountImportance.Text.Split(':');
+                    LoadForCna(int.Parse(s[0]), int.Parse(s[1]));
+                }
+                else
+                {
+                    //test
+                    LoadForCna(int.Parse(CountImportance.Text));
+                }
+                return;
+            }
             var ci = CountImportance.Text;
             if (string.IsNullOrWhiteSpace(ci))
             {
@@ -320,6 +334,24 @@ namespace FlashCard.Pages
             //first cat then choose
             Categorize();
             Words = Words.Take((min + 1) * 40).OrderBy(x => rnd.Next(Words.Count)).ToList();
+            next();
+        }
+        private void LoadForCna(int min, int diff)
+        {
+            LoadBasic();
+            Categorize();
+            Words = Words.Take((min + 1) * 50)
+                .Where(x => x.Meaning < diff)
+                .OrderBy(x => rnd.Next(Words.Count)).ToList();
+            next();
+        }
+        private void LoadForCna(int min)
+        {
+            //fuck github
+            LoadBasic();
+            //first cat then choose
+            Categorize();
+            Words = Words.Take((min + 1) * 50).OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void Load(int max, int diff)
