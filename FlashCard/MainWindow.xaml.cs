@@ -84,5 +84,32 @@ namespace FlashCard
         {
             Helpers.Navigate(new Writing());
         }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            //using (var dic = new Dictionary())
+            //{
+            //    var items = dic.GetAll().ToList();
+            //    foreach (var item in items)
+            //    {
+            //        //if (item.CategoryMeaning == "normal" && item.Meaning == 0 && !item.TheWord.Contains('.'))
+            //        //{
+            //        //    item.CategoryMeaning = "Cna";
+            //        //    dic.Update(item);
+            //        //}
+            //        //if (item.CategoryMeaning == "normal" && item.Meaning <= 10 && item.Meaning >= -10)
+            //        //{
+            //        //    item.CategoryMeaning = "Cna";
+            //        //    dic.Update(item);
+            //        //}
+            //        if (item.CategoryMeaning == "Cna")
+            //        {
+            //            item.Meaning = 0;
+            //            dic.Update(item);
+            //        }
+            //    }
+            //}
+
+        }
     }
 }

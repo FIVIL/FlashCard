@@ -23,6 +23,7 @@
                     <MenuItem Header="_File" Click="FileWord_Click"/>
                     <MenuItem Header="_Update" Click="MenuItem_Click_1"/>
                     <MenuItem Header="_Show" Click="MenuItem_Click" />
+                    <MenuItem Header="_Change cat" Click="MenuItem_Click_4"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
