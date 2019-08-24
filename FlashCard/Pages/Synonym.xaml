@@ -40,6 +40,7 @@
             VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Margin="10">
             <DockPanel LastChildFill="True">
                 <DockPanel Margin="1" DockPanel.Dock="Right">
+                    <Button  Margin="1" Click="Button_Click_7" DockPanel.Dock="Top">SuperOK</Button>
                     <Button Margin="1" Click="Button_Click_5" DockPanel.Dock="Bottom">Prev</Button>
                     <Button  Margin="1" Click="Button_Click_6" DockPanel.Dock="Top">Next</Button>
                 </DockPanel>

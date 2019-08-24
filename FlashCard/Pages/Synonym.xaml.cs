@@ -424,5 +424,15 @@ namespace FlashCard.Pages
         {
             Button_Click_4(null, null);
         }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            if (mod == 0) Current.Meaning += 10;
+            else if (mod == 1) Current.Spelling += 10;
+            else if (mod == 2) Current.Meaning += 10;
+            else if (mod == 3) Current.PronScore += 10;
+            dic.Update(Current);
+            next();
+        }
     }
 }
