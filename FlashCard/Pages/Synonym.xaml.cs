@@ -434,5 +434,14 @@ namespace FlashCard.Pages
             dic.Update(Current);
             next();
         }
+
+        //private void Button_Click_10(object sender, RoutedEventArgs e)
+        //{
+        //    foreach (var item in Words)
+        //    {
+        //        item.Spelling = -100;
+        //    }
+        //    dic.Update(Words);
+        //}
     }
 }
