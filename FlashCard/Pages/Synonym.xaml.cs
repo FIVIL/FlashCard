@@ -130,10 +130,10 @@ namespace FlashCard.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (mod == 0) Current.Meaning--;
-            else if (mod == 1) Current.Spelling--;
-            else if (mod == 2) Current.Meaning--;
-            else if (mod == 3) Current.PronScore--;
+            if (mod == 0 && Current.Meaning > 0) Current.Meaning--;
+            else if (mod == 1 && Current.Spelling > 0) Current.Spelling--;
+            else if (mod == 2 && Current.Meaning > 0) Current.Meaning--;
+            else if (mod == 3 && Current.PronScore > 0) Current.PronScore--;
             dic.Update(Current);
             next();
         }
