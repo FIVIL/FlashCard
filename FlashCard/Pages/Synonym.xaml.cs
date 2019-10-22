@@ -293,11 +293,28 @@ namespace FlashCard.Pages
             Categorize();
             next();
         }
-        private void Load(int max)
+        //private void Load(int max)
+        //{
+        //    LoadBasic();
+        //    Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
+        //    Categorize();
+        //    next();
+        //}
+        private void Load(int min)
         {
             LoadBasic();
-            Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
+            //first cat then choose
             Categorize();
+            Words = Words.Take((min + 1) * 50).OrderBy(x => rnd.Next(Words.Count)).ToList();
+            next();
+        }
+        private void Load(int min, int diff)
+        {
+            LoadBasic();
+            Categorize();
+            Words = Words.Take((min + 1) * 50)
+                .Where(x => x.Meaning < diff)
+                .OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
         private void LoadFor400(int min, int diff)
@@ -311,7 +328,6 @@ namespace FlashCard.Pages
         }
         private void LoadFor400(int min)
         {
-            //fuck github
             LoadBasic();
             //first cat then choose
             Categorize();
@@ -354,14 +370,14 @@ namespace FlashCard.Pages
             Words = Words.Take((min + 1) * 50).OrderBy(x => rnd.Next(Words.Count)).ToList();
             next();
         }
-        private void Load(int max, int diff)
-        {
-            LoadBasic(diff);
-            if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
-            else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
-            Categorize();
-            next();
-        }
+        //private void Load(int max, int diff)
+        //{
+        //    LoadBasic(diff);
+        //    if (max == 0) Words = Words.OrderBy(x => rnd.Next(Words.Count)).ToList();
+        //    else Words = Words.OrderBy(x => rnd.Next(Words.Count)).Take(max).ToList();
+        //    Categorize();
+        //    next();
+        //}
         private void Load(int max, int diffMin, int diffMax)
         {
             LoadBasic(diffMin, diffMax);
