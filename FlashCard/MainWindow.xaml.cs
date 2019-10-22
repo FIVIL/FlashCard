@@ -111,5 +111,21 @@ namespace FlashCard
             //}
 
         }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+            using(var dic=new Dictionary())
+            {
+                var items = dic.GetAll().ToList();
+                foreach (var item in items)
+                {                 
+                    item.CategoryMeaning = "normal";
+                    if (item.IsSpelling) item.CategoryMeaning = "na";
+                    item.Spelling = 0;
+                    item.Meaning = 0;                    
+                }
+                dic.Update(items);
+            }
+        }
     }
 }
