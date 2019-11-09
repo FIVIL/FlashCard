@@ -285,6 +285,17 @@ namespace FlashCard.Pages
             else if (mod == 2) Words = dic.GetWord(x => x.Meaning < diffMin & x.Meaning > diffMax && x.IsMeaning).ToList();
             else if (mod == 3) Words = dic.GetWord(x => x.PronScore < diffMin && x.PronScore > diffMax && x.IsPron).ToList();
         }
+        private void Calcmin(int diff)
+        {
+            if (mod == 0) Words = Words.Where(x => x.Meaning < diff)
+                    .OrderBy(x => rnd.Next(Words.Count)).ToList();
+            else if (mod == 1) Words = Words.Where(x => x.Spelling < diff)
+                    .OrderBy(x => rnd.Next(Words.Count)).ToList();
+            else if (mod == 2) Words = Words.Where(x => x.Meaning < diff)
+                    .OrderBy(x => rnd.Next(Words.Count)).ToList();
+            else if (mod == 3) Words = Words.Where(x => x.PronScore < diff)
+                    .OrderBy(x => rnd.Next(Words.Count)).ToList();
+        }
         private void Load()
         {
 
@@ -312,9 +323,8 @@ namespace FlashCard.Pages
         {
             LoadBasic();
             Categorize();
-            Words = Words.Take((min + 1) * 50)
-                .Where(x => x.Meaning < diff)
-                .OrderBy(x => rnd.Next(Words.Count)).ToList();
+            Words = Words.Take((min + 1) * 50).ToList();
+            Calcmin(diff);
             next();
         }
         private void LoadFor400(int min, int diff)
