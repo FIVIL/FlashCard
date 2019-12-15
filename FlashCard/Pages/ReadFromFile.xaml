@@ -27,6 +27,11 @@
                 <TextBox Width="50" x:Name="SpelCatt" Text="normal"/>
             </StackPanel>
             <TextBox x:Name="Search" Margin="5" TextChanged="Search_TextChanged"/>
+            <Grid Margin="0 10">
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="50" Click="Button_Click">Load</Button>
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="50" Click="Button_Click_1">New</Button>
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50" Click="Button_Click_2">Add</Button>
+            </Grid>
             <ScrollViewer x:Name="SV" VerticalAlignment="Top" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Height="800">
                 <StackPanel x:Name="Words">
                     <StackPanel Margin="0 2" Background="Wheat">
@@ -59,11 +64,6 @@
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
-            <Grid Margin="0 10">
-                <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="50" Click="Button_Click">Load</Button>
-                <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="50" Click="Button_Click_1">New</Button>
-                <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50" Click="Button_Click_2">Add</Button>
-            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

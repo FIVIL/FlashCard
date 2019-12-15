@@ -29,7 +29,7 @@ namespace FlashCard.Pages
         {
             InitializeComponent();
             this.mod = mod;
-            Helpers.mainWindow.Height = 980;
+            Helpers.mainWindow.Height = (System.Windows.SystemParameters.PrimaryScreenHeight - 20);
             Helpers.mainWindow.Top = 1;
             items = new List<Item>();
             Words.Children.Clear();
