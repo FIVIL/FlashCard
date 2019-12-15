@@ -27,7 +27,7 @@ namespace FlashCard
             InitializeComponent();
             Helpers.mainGrid = this.Content;
             Helpers.mainWindow = this;
-            Helpers.Navigate(new MainPage());
+            Helpers.Navigate(new Synonym(0));
         }
 
         private void Synonym_Click(object sender, RoutedEventArgs e)
@@ -114,18 +114,40 @@ namespace FlashCard
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
-            using(var dic=new Dictionary())
+            using (var dic = new Dictionary())
             {
                 var items = dic.GetAll().ToList();
                 foreach (var item in items)
-                {                 
+                {
                     item.CategoryMeaning = "normal";
                     if (item.IsSpelling) item.CategoryMeaning = "na";
                     item.Spelling = 0;
-                    item.Meaning = 0;                    
+                    item.Meaning = 0;
                 }
                 dic.Update(items);
             }
+        }
+
+        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
+        {
+            var dialogResult = MessageBox.Show("Sure", "Are you sure?", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                using (var dic = new Dictionary())
+                {
+                    var items = dic.GetAll().ToList();
+                    foreach (var item in items)
+                    {
+                        item.CategoryMeaning = "normal";
+                        if (item.IsSpelling) item.CategoryMeaning = "na";
+                        item.Spelling = 0;
+                        item.Meaning = 0;
+                    }
+                    dic.Update(items);
+                }
+
+            }
+
         }
     }
 }

@@ -13,10 +13,11 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Start">
                     <MenuItem Header="_Synonyms" Click="Synonym_Click"/>
-                    <MenuItem Header="_SynonymsReverse" Click="SynonymReverse_Click"/>
+                    <!--<MenuItem Header="_SynonymsReverse" Click="SynonymReverse_Click"/>
                     <MenuItem Header="_Spelling" Click="Spelling_Click" />
                     <MenuItem Header="_Pronunciation" Click="MenuItem_Click_2" />
-                    <MenuItem Header="_Writing" Click="MenuItem_Click_3" />
+                    <MenuItem Header="_Writing" Click="MenuItem_Click_3" />-->
+                    <MenuItem Header="_Clear" Click="MenuItem_Click_6" />
                 </MenuItem>
                 <MenuItem Header="_New word">
                     <MenuItem Header="_Single" Click="SingleWord_Click"/>

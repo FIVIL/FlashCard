@@ -63,7 +63,7 @@
                     <TextBlock x:Name="Counter" Grid.Column="0"/>
                     <ComboBox x:Name="Categories" Grid.Column="1" SelectionChanged="Categories_SelectionChanged"/>
                 </Grid>
-                <TextBox x:Name="CountImportance" Margin="1" FontSize="15"/>
+                <TextBox x:Name="CountImportance" Margin="1" FontSize="15" Text="0:10"/>
                 <Button Background="Aqua" Margin="1" Click="Button_Click_4">New</Button>
             </StackPanel>
         </Border>

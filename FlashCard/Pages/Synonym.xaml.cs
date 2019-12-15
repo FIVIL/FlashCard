@@ -115,7 +115,7 @@ namespace FlashCard.Pages
                 container.Children.Add(tb);
             }
             else if (mod == 3) Mode.Text = "Pronunciation";
-            Load();
+            Load(0,10);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
